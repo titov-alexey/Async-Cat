@@ -33,10 +33,11 @@ class LocalNetworkService: NetworkService {
                 default:
                     print("получил не текст")
                 }
+                self?.startObserve(observer: observer)
             case .failure(let error):
                 print(error)
+                self?.disconnect()
             }
-            self?.startObserve(observer: observer)
         }
     }
     

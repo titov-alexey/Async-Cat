@@ -32,14 +32,21 @@ class MainScreenController: UIViewController, MainScreen {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
         setupCat()
+        setupButtons()
 
         interactor.listenCat { [weak self] catSay in
-            DispatchQueue.main.async {
-                self?.showCatWords(catSay)
-            }
-            
+            self?.showCatWords(catSay)
         }
         
+    }
+    
+    
+    @objc func addData() {
+        interactor.addCat()
+    }
+    
+    @objc func getData() {
+        interactor.getAllCats()
     }
     
     func showCatWords(_ word: String) {
@@ -74,5 +81,39 @@ class MainScreenController: UIViewController, MainScreen {
         ])
     }
     
-    
+    private func setupButtons() {
+        let saveButton = UIButton()
+        saveButton.translatesAutoresizingMaskIntoConstraints = false
+        saveButton.addTarget(self, action: #selector(addData), for: .touchUpInside)
+        saveButton.setTitle("Save", for: .normal)
+        saveButton.backgroundColor = .white
+        saveButton.setTitleColor(.black, for: .normal)
+        
+        let getAllButton = UIButton()
+        getAllButton.translatesAutoresizingMaskIntoConstraints = false
+        getAllButton.addTarget(self, action: #selector(getData), for: .touchUpInside)
+        getAllButton.setTitle("getAll", for: .normal)
+        getAllButton.backgroundColor = .white
+        getAllButton.setTitleColor(.black, for: .normal)
+        
+        let stack = UIStackView(arrangedSubviews: [saveButton, getAllButton])
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = .horizontal
+        stack.distribution = .fillEqually
+        stack.alignment = .center
+        stack.spacing = 16
+        
+        view.addSubview(stack)
+        
+        NSLayoutConstraint.activate([
+            saveButton.heightAnchor.constraint(equalToConstant: 40),
+            getAllButton.heightAnchor.constraint(equalToConstant: 40),
+            
+            stack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
+            stack.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 16),
+            stack.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -16),
+            
+        ])
+        
+    }
 }
