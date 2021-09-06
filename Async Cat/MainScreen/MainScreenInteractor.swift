@@ -12,7 +12,7 @@ protocol MainScreenInteractorProtocol {
     
     func listenCat(_ closure: @escaping (String) -> Void)
     func addCat()
-    func getAllCats()
+    func getAllCats() -> [Animal]
     func stopListenCat()
 }
 
@@ -39,12 +39,15 @@ class MainScreenInteractor: MainScreenInteractorProtocol {
         animal.name = "Hinata"
         animal.type = "Cat"
         
-        storage.saveContext()
+        storage.saveInBackground()
     }
     
-    func getAllCats() {
-        let objects = storage.getAllObjects()
-        print(objects)
+    func getAllCats() -> [Animal] {
+        if let objects = storage.getAllObjects() {
+            print(objects.count)
+            return objects
+        }
+        return []
     }
     
     func stopListenCat() {

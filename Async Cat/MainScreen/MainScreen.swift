@@ -14,8 +14,13 @@ protocol MainScreen: UIViewController {
 }
 
 class MainScreenController: UIViewController, MainScreen {
+    
     var interactor: MainScreenInteractorProtocol
     weak var output: MainScreenOutput?
+    
+    let buttontStack = UIStackView()
+    let collection = AnimalsCollectionView()
+    let collectionDelegate = AnimalCollectionDelegate()
     
     let cat = UIImageView(image: UIImage(named: "cat.splashscreen"))
     
@@ -31,12 +36,13 @@ class MainScreenController: UIViewController, MainScreen {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-        setupCat()
+//        setupCat()
         setupButtons()
+        setupCollection()
 
-        interactor.listenCat { [weak self] catSay in
-            self?.showCatWords(catSay)
-        }
+//        interactor.listenCat { [weak self] catSay in
+//            self?.showCatWords(catSay)
+//        }
         
     }
     
@@ -45,8 +51,9 @@ class MainScreenController: UIViewController, MainScreen {
         interactor.addCat()
     }
     
-    @objc func getData() {
-        interactor.getAllCats()
+    @objc func getCats() {
+        collectionDelegate.dataSource = interactor.getAllCats()
+        collection.reloadData()
     }
     
     func showCatWords(_ word: String) {
@@ -64,6 +71,23 @@ class MainScreenController: UIViewController, MainScreen {
             cell.removeFromSuperview()
         }
 
+    }
+    
+    func setupCollection() {
+        collection.dataSource = collectionDelegate
+        collection.translatesAutoresizingMaskIntoConstraints = false
+        collection.register(AnimalCell.self)
+        collection.backgroundColor = .clear
+        
+        
+        view.addSubview(collection)
+        
+        NSLayoutConstraint.activate([
+            collection.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            collection.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+            collection.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
+            collection.bottomAnchor.constraint(equalTo: buttontStack.topAnchor),
+        ])
     }
     
     
@@ -91,27 +115,28 @@ class MainScreenController: UIViewController, MainScreen {
         
         let getAllButton = UIButton()
         getAllButton.translatesAutoresizingMaskIntoConstraints = false
-        getAllButton.addTarget(self, action: #selector(getData), for: .touchUpInside)
+        getAllButton.addTarget(self, action: #selector(getCats), for: .touchUpInside)
         getAllButton.setTitle("getAll", for: .normal)
         getAllButton.backgroundColor = .white
         getAllButton.setTitleColor(.black, for: .normal)
         
-        let stack = UIStackView(arrangedSubviews: [saveButton, getAllButton])
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.axis = .horizontal
-        stack.distribution = .fillEqually
-        stack.alignment = .center
-        stack.spacing = 16
+        buttontStack.addArrangedSubview(saveButton)
+        buttontStack.addArrangedSubview(getAllButton)
+        buttontStack.translatesAutoresizingMaskIntoConstraints = false
+        buttontStack.axis = .horizontal
+        buttontStack.distribution = .fillEqually
+        buttontStack.alignment = .center
+        buttontStack.spacing = 16
         
-        view.addSubview(stack)
+        view.addSubview(buttontStack)
         
         NSLayoutConstraint.activate([
             saveButton.heightAnchor.constraint(equalToConstant: 40),
             getAllButton.heightAnchor.constraint(equalToConstant: 40),
             
-            stack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
-            stack.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 16),
-            stack.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -16),
+            buttontStack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
+            buttontStack.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 16),
+            buttontStack.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -16),
             
         ])
         

@@ -8,35 +8,75 @@
 import Foundation
 import UIKit
 
-class AnimalCell: UICollectionViewCell, AnimalLogic {
+class AnimalCell: UICollectionViewCell, ConfigurableCell {
     
-    let animalImg = UIImageView(image: UIImage(named: "cat.splashscreen")!)
+    let animalImg = UIImageView()
     let animalName = UILabel()
+    let stack = UIStackView()
     
-    init() {
-        super.init(frame: .zero)
-        setupView()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with img: UIImage) {
-        animalImg.image = img
-        animalName.text = "Aboba"
+    func configure(with animal: Animal) {
+        animalImg.image = UIImage(named: "cat.splashscreen")!
+        animalName.text = animal.name
     }
     
     private func setupView() {
-        contentView.backgroundColor = .clear
+        contentView.backgroundColor = .white.withAlphaComponent(0.3)
         
+        
+        animalImg.translatesAutoresizingMaskIntoConstraints = false
+        animalImg.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        
+        animalName.translatesAutoresizingMaskIntoConstraints = false
+        animalName.setContentHuggingPriority(.defaultHigh, for: .vertical)
         animalName.font = .systemFont(ofSize: 14, weight: .medium)
+        animalName.textAlignment = .center
+        animalName.numberOfLines = 1
         
-        contentView.addSubview(animalImg)
-        contentView.addSubview(animalName)
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.addArrangedSubview(animalImg)
+        stack.addArrangedSubview(animalName)
+        stack.alignment = .center
+        stack.axis = .vertical
+        stack.spacing = 10
+        stack.distribution = .fillProportionally
+        
+        contentView.addSubview(stack)
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        animalName.text = ""
+        animalImg.image = nil
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setupView()
+        setupConstraints()
     }
     
     private func setupConstraints() {
-        
+        NSLayoutConstraint.activate([
+            stack.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            stack.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            stack.widthAnchor.constraint(lessThanOrEqualTo: contentView.widthAnchor, constant: -20),
+            stack.heightAnchor.constraint(lessThanOrEqualTo: contentView.heightAnchor, constant: -20),
+            
+            animalImg.heightAnchor.constraint(equalTo: animalImg.widthAnchor),
+        ])
     }
+    
+//    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+//        let targetSize = CGSize(width: layoutAttributes.frame.width, height: 0)
+//        layoutAttributes.frame.size = contentView.systemLayoutSizeFitting(targetSize, withHorizontalFittingPriority: .required, verticalFittingPriority: .fittingSizeLevel)
+//        return layoutAttributes
+//    }
 }
