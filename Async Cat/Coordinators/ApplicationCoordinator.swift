@@ -27,7 +27,7 @@ class ApplicationCoordinator: Coordinator{
     
 }
 
-extension ApplicationCoordinator: MainScreenOutput {
+extension ApplicationCoordinator: MainScreenRouter {
 
     
 }

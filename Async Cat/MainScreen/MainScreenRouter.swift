@@ -7,10 +7,10 @@
 
 import Foundation
 
-protocol MainScreenOutput: AnyObject{
+protocol MainScreenRouter: AnyObject{
   
 }
 
-class MainScreenOutputImp: MainScreenOutput {
+class MainScreenOutputImp: MainScreenRouter {
 
 }

@@ -12,17 +12,25 @@ protocol MainScreenInteractorProtocol {
     
     func listenCat(_ closure: @escaping (String) -> Void)
     func addCat()
-    func getAllCats() -> [Animal]
+    func getCats()
     func stopListenCat()
+    func deleteCat(animal: Animal)
 }
 
 class MainScreenInteractor: MainScreenInteractorProtocol {
+    
+    
     var network: NetworkService
     
-    var storage = AnimalsStorage()
+    let storage: AnimalsStorage
+    let presenter: MainScreenPresenterProtocol
     
-    init(network: NetworkService) {
+    init(network: NetworkService,
+         presenter: MainScreenPresenterProtocol,
+         storage: AnimalsStorage) {
         self.network = network
+        self.presenter = presenter
+        self.storage = storage
     }
     
     func listenCat(_ closure: @escaping (String) -> Void) {
@@ -34,6 +42,10 @@ class MainScreenInteractor: MainScreenInteractorProtocol {
         })
     }
     
+    func stopListenCat() {
+        network.disconnect()
+    }
+    
     func addCat() {
         let animal = Animal(context: storage.context)
         animal.name = "Hinata"
@@ -42,16 +54,22 @@ class MainScreenInteractor: MainScreenInteractorProtocol {
         storage.saveInBackground()
     }
     
-    func getAllCats() -> [Animal] {
+    private func getAllCats() -> [Animal] {
         if let objects = storage.getAllObjects() {
-            print(objects.count)
             return objects
         }
         return []
     }
+        
+    func getCats() {
+        presenter.displayAnimals(getAllCats())
+    }
     
-    func stopListenCat() {
-        network.disconnect()
+    func deleteCat(animal: Animal) {
+        storage.context.delete(animal)
+        storage.saveContext()
+        presenter.displayAnimals(getAllCats())
     }
     
 }
+

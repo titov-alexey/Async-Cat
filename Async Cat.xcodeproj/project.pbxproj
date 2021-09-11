@@ -11,6 +11,9 @@
 		47E2CF4B08A93C3316528203 /* Pods_Async_Cat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFBF74A0B0DD8030D3F5CDD0 /* Pods_Async_Cat.framework */; };
 		883F209126E63863003461C7 /* AnimalCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883F209026E63863003461C7 /* AnimalCellConfigurator.swift */; };
 		883F209326E64CF8003461C7 /* AnimalsFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883F209226E64CF8003461C7 /* AnimalsFlowLayout.swift */; };
+		888B9C8626ECDDB5007EC441 /* BasicStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888B9C8526ECDDB5007EC441 /* BasicStorage.swift */; };
+		88A2C3F626EBADE50057B8B1 /* MainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A2C3F526EBADE50057B8B1 /* MainScreenView.swift */; };
+		88A2C3FA26EBBB410057B8B1 /* MainScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A2C3F926EBBB410057B8B1 /* MainScreenPresenter.swift */; };
 		88A8EC0B26DE9550007E1A40 /* Animal+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8EC0926DE9550007E1A40 /* Animal+CoreDataClass.swift */; };
 		88A8EC0C26DE9550007E1A40 /* Animal+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8EC0A26DE9550007E1A40 /* Animal+CoreDataProperties.swift */; };
 		88F984D026DF78E9007979F6 /* AnimalsCollectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F984CF26DF78E9007979F6 /* AnimalsCollectionDelegate.swift */; };
@@ -25,7 +28,7 @@
 		901791A726D133EE0081FEA3 /* DIResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901791A626D133EE0081FEA3 /* DIResolver.swift */; };
 		901791AA26D1398D0081FEA3 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901791A926D1398D0081FEA3 /* MainScreen.swift */; };
 		901791AC26D13E4E0081FEA3 /* MainScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901791AB26D13E4E0081FEA3 /* MainScreenInteractor.swift */; };
-		901791AE26D13E5D0081FEA3 /* MainScreenOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901791AD26D13E5D0081FEA3 /* MainScreenOutput.swift */; };
+		901791AE26D13E5D0081FEA3 /* MainScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901791AD26D13E5D0081FEA3 /* MainScreenRouter.swift */; };
 		901791B026D15A4E0081FEA3 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901791AF26D15A4E0081FEA3 /* NetworkService.swift */; };
 		901791B526D17C140081FEA3 /* SaysCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901791B426D17C140081FEA3 /* SaysCell.swift */; };
 		909E16CC26D927550044D8CD /* Animals_datamodel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 909E16CA26D927550044D8CD /* Animals_datamodel.xcdatamodeld */; };
@@ -61,8 +64,11 @@
 		339D35AB09CF5E084526F414 /* Pods_Async_Cat_Async_CatUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Async_Cat_Async_CatUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		883F209026E63863003461C7 /* AnimalCellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalCellConfigurator.swift; sourceTree = "<group>"; };
 		883F209226E64CF8003461C7 /* AnimalsFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalsFlowLayout.swift; sourceTree = "<group>"; };
-		88A8EC0926DE9550007E1A40 /* Animal+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Animal+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		88A8EC0A26DE9550007E1A40 /* Animal+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Animal+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		888B9C8526ECDDB5007EC441 /* BasicStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicStorage.swift; sourceTree = "<group>"; };
+		88A2C3F526EBADE50057B8B1 /* MainScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenView.swift; sourceTree = "<group>"; };
+		88A2C3F926EBBB410057B8B1 /* MainScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenPresenter.swift; sourceTree = "<group>"; };
+		88A8EC0926DE9550007E1A40 /* Animal+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Animal+CoreDataClass.swift"; path = "Async Cat/Database/Animals/Animal+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		88A8EC0A26DE9550007E1A40 /* Animal+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Animal+CoreDataProperties.swift"; path = "Async Cat/Database/Animals/Animal+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		88F984CF26DF78E9007979F6 /* AnimalsCollectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalsCollectionDelegate.swift; sourceTree = "<group>"; };
 		900C5A9626CC313900477A99 /* Async Cat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Async Cat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		900C5A9926CC313900477A99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -81,7 +87,7 @@
 		901791A626D133EE0081FEA3 /* DIResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIResolver.swift; sourceTree = "<group>"; };
 		901791A926D1398D0081FEA3 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		901791AB26D13E4E0081FEA3 /* MainScreenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenInteractor.swift; sourceTree = "<group>"; };
-		901791AD26D13E5D0081FEA3 /* MainScreenOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenOutput.swift; sourceTree = "<group>"; };
+		901791AD26D13E5D0081FEA3 /* MainScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenRouter.swift; sourceTree = "<group>"; };
 		901791AF26D15A4E0081FEA3 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		901791B426D17C140081FEA3 /* SaysCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaysCell.swift; sourceTree = "<group>"; };
 		909E16CB26D927550044D8CD /* Animals_datamodel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Animals_datamodel.xcdatamodel; sourceTree = "<group>"; };
@@ -136,9 +142,53 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		8825676326ED0D560091A6E9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				901791A926D1398D0081FEA3 /* MainScreen.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		888B9C8426ECDD11007EC441 /* BasicStorage */ = {
+			isa = PBXGroup;
+			children = (
+				888B9C8526ECDDB5007EC441 /* BasicStorage.swift */,
+			);
+			path = BasicStorage;
+			sourceTree = "<group>";
+		};
+		88A2C3F426EBADCD0057B8B1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				88A2C3F526EBADE50057B8B1 /* MainScreenView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		88A2C3F726EBB3120057B8B1 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				901791AB26D13E4E0081FEA3 /* MainScreenInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		88A2C3F826EBBB300057B8B1 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				88A2C3F926EBBB410057B8B1 /* MainScreenPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		88F984CE26DF63A9007979F6 /* Animals */ = {
 			isa = PBXGroup;
 			children = (
+				909E16D526DA72980044D8CD /* AnimalsStorage.swift */,
+				909E16CA26D927550044D8CD /* Animals_datamodel.xcdatamodeld */,
+				88A8EC0A26DE9550007E1A40 /* Animal+CoreDataProperties.swift */,
+				88A8EC0926DE9550007E1A40 /* Animal+CoreDataClass.swift */,
 			);
 			path = Animals;
 			sourceTree = "<group>";
@@ -229,10 +279,12 @@
 		901791A826D139730081FEA3 /* MainScreen */ = {
 			isa = PBXGroup;
 			children = (
+				8825676326ED0D560091A6E9 /* Controller */,
+				88A2C3F826EBBB300057B8B1 /* Presenter */,
+				88A2C3F726EBB3120057B8B1 /* Interactor */,
+				88A2C3F426EBADCD0057B8B1 /* Views */,
 				909E16D726DAACF30044D8CD /* AnimalsCollection */,
-				901791A926D1398D0081FEA3 /* MainScreen.swift */,
-				901791AB26D13E4E0081FEA3 /* MainScreenInteractor.swift */,
-				901791AD26D13E5D0081FEA3 /* MainScreenOutput.swift */,
+				901791AD26D13E5D0081FEA3 /* MainScreenRouter.swift */,
 			);
 			path = MainScreen;
 			sourceTree = "<group>";
@@ -265,11 +317,8 @@
 		907E366F26D91BF100228A46 /* Database */ = {
 			isa = PBXGroup;
 			children = (
+				888B9C8426ECDD11007EC441 /* BasicStorage */,
 				88F984CE26DF63A9007979F6 /* Animals */,
-				88A8EC0926DE9550007E1A40 /* Animal+CoreDataClass.swift */,
-				88A8EC0A26DE9550007E1A40 /* Animal+CoreDataProperties.swift */,
-				909E16CA26D927550044D8CD /* Animals_datamodel.xcdatamodeld */,
-				909E16D526DA72980044D8CD /* AnimalsStorage.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -543,6 +592,7 @@
 			files = (
 				901791B026D15A4E0081FEA3 /* NetworkService.swift in Sources */,
 				909E16CC26D927550044D8CD /* Animals_datamodel.xcdatamodeld in Sources */,
+				888B9C8626ECDDB5007EC441 /* BasicStorage.swift in Sources */,
 				901791B526D17C140081FEA3 /* SaysCell.swift in Sources */,
 				901791AA26D1398D0081FEA3 /* MainScreen.swift in Sources */,
 				909E16DC26DABC4D0044D8CD /* UICollectionView+Extensions.swift in Sources */,
@@ -554,10 +604,12 @@
 				88A8EC0C26DE9550007E1A40 /* Animal+CoreDataProperties.swift in Sources */,
 				88A8EC0B26DE9550007E1A40 /* Animal+CoreDataClass.swift in Sources */,
 				88F984D026DF78E9007979F6 /* AnimalsCollectionDelegate.swift in Sources */,
+				88A2C3FA26EBBB410057B8B1 /* MainScreenPresenter.swift in Sources */,
 				883F209126E63863003461C7 /* AnimalCellConfigurator.swift in Sources */,
 				901791AC26D13E4E0081FEA3 /* MainScreenInteractor.swift in Sources */,
 				900C5A9C26CC313900477A99 /* SceneDelegate.swift in Sources */,
-				901791AE26D13E5D0081FEA3 /* MainScreenOutput.swift in Sources */,
+				88A2C3F626EBADE50057B8B1 /* MainScreenView.swift in Sources */,
+				901791AE26D13E5D0081FEA3 /* MainScreenRouter.swift in Sources */,
 				909E16D926DAAD210044D8CD /* AnimalsCollectionView.swift in Sources */,
 				900C5ACA26CC351A00477A99 /* ApplicationCoordinator.swift in Sources */,
 				909E16DE26DABEE30044D8CD /* AnimalCell.swift in Sources */,

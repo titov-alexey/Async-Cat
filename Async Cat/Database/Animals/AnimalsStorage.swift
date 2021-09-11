@@ -8,17 +8,7 @@
 import Foundation
 import CoreData
 
-protocol BasicStorage {
-    associatedtype T 
-    var persistentContainer: NSPersistentContainer { get set }
-    var context: NSManagedObjectContext { get set }
-    
-    func getAllObjects() -> [T]?
-    func saveInBackground()
-    
-}
-
-class AnimalsStorage: BasicStorage {
+final class AnimalsStorage: BasicStorage {
 
     var persistentContainer: NSPersistentContainer
     var context: NSManagedObjectContext
@@ -69,6 +59,13 @@ class AnimalsStorage: BasicStorage {
                     fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
                 }
             }
+        }
+    }
+    
+    func removeObject(_ object: Animal) {
+        let context = persistentContainer.newBackgroundContext()
+        context.perform { [weak self] in
+            context.delete(object)
         }
     }
     

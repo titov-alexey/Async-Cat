@@ -8,9 +8,10 @@
 import Foundation
 import UIKit
 
-class AnimalCollectionDelegate: NSObject, UICollectionViewDataSource {
+class AnimalCollectionDelegate: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
     
     var dataSource = [Animal]()
+    weak var actionDelegate: MainScreenController?
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         dataSource.count
@@ -22,4 +23,10 @@ class AnimalCollectionDelegate: NSObject, UICollectionViewDataSource {
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let animal = dataSource[indexPath.row]
+//        dataSource.remove(at: indexPath.row)
+//        collectionView.deleteItems(at: [indexPath])
+        actionDelegate?.removeAnimal(animal)
+    }
 }

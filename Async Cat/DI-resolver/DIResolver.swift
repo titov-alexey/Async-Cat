@@ -48,16 +48,28 @@ private extension DIResolver {
                                           mainScreen: mainScreen)
         }.inObjectScope(.container)
         
-        container.register(MainScreenOutput.self) { r in
+        container.register(MainScreenRouter.self) { r in
             return r.resolve(ApplicationCoordinator.self)!
         }
     }
     
     func registerMainScreen() {
         
+        container.register(MainScreenPresenterProtocol.self) { r in
+            return MainScreenPresenter()
+        }
+        
+        container.register(AnimalsStorage.self) { r in
+            return AnimalsStorage()
+        }
+        
         container.register(MainScreenInteractorProtocol.self) { r in
             let network = r.resolve(NetworkService.self)!
-            return MainScreenInteractor(network: network)
+            let presenter = r.resolve(MainScreenPresenterProtocol.self)!
+            let storage = r.resolve(AnimalsStorage.self)!
+            return MainScreenInteractor(network: network,
+                                        presenter: presenter,
+                                        storage: storage)
         }
         
         container.register(MainScreen.self) { r in
@@ -65,7 +77,9 @@ private extension DIResolver {
             return MainScreenController(interactor: intaractor!)
         }.initCompleted { r, controller in
             let mainScreenController = controller as! MainScreenController
-            mainScreenController.output = r.resolve(MainScreenOutput.self)
+            var presenter = r.resolve(MainScreenPresenterProtocol.self)
+            presenter?.viewController = mainScreenController
+            mainScreenController.output = r.resolve(MainScreenRouter.self)
         }
     }
 }

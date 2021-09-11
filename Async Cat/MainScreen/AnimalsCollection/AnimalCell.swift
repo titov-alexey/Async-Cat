@@ -22,14 +22,38 @@ class AnimalCell: UICollectionViewCell, ConfigurableCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override var isHighlighted: Bool {
+        didSet {
+            let duration = isHighlighted ? 0.45 : 0.4
+            let transform = isHighlighted ?
+                CGAffineTransform(scaleX: 0.96, y: 0.96) : CGAffineTransform.identity
+            let bgColor = isHighlighted ?
+                UIColor(white: 1.0, alpha: 0.2) : UIColor(white: 1.0, alpha: 0.1)
+            let animations = {
+                self.transform = transform
+                self.contentView.backgroundColor = bgColor
+            }
+            
+            UIView.animate(withDuration: duration,
+                           delay: 0,
+                           usingSpringWithDamping: 1.0,
+                           initialSpringVelocity: 0.0,
+                           options: [.allowUserInteraction, .beginFromCurrentState],
+                           animations: animations,
+                           completion: nil)
+        }
+    }
+    
     func configure(with animal: Animal) {
         animalImg.image = UIImage(named: "cat.splashscreen")!
         animalName.text = animal.name
     }
     
     private func setupView() {
-        contentView.backgroundColor = .white.withAlphaComponent(0.3)
-        
+        contentView.backgroundColor = UIColor(white: 1.0, alpha: 0.1)
+        contentView.layer.cornerRadius = 12
+        contentView.layer.cornerCurve = .continuous
+        contentView.clipsToBounds = true
         
         animalImg.translatesAutoresizingMaskIntoConstraints = false
         animalImg.setContentHuggingPriority(.defaultLow, for: .horizontal)
