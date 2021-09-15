@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 
 struct AnimalDTO {
     
@@ -16,14 +17,22 @@ struct AnimalDTO {
     }
     
     var name: String
-    var type: AnimalType
-//    var dateCreated: Date
+    var type: AnimalType?
+    var dateCreated: Date?
+    var uuid: UUID?
+    var storageID: NSManagedObjectID?
     
-//    mutating func from(_ animal: Animal) {
-//        name = animal.name
-//        type = AnimalType(rawValue: animal.type ?? "")
-//        dateCreated = animal.dateCreated
-//
-//    }
+    init(name: String, type: AnimalType) {
+        self.name = name
+        self.type = type
+    }
+    
+    init(animal: Animal) {
+        name = animal.name!
+        type = AnimalType(rawValue: animal.type ?? "")
+        dateCreated = animal.dateCreated!
+        uuid = animal.uuid!
+        storageID = animal.objectID
+    }
     
 }

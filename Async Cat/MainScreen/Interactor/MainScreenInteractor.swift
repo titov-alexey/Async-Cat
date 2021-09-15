@@ -14,7 +14,7 @@ protocol MainScreenInteractorProtocol {
     func addCat()
     func getCats()
     func stopListenCat()
-    func deleteCat(animal: Animal, index: IndexPath)
+    func deleteCat(animal: AnimalDTO, index: IndexPath)
 }
 
 class MainScreenInteractor: MainScreenInteractorProtocol {
@@ -51,17 +51,17 @@ class MainScreenInteractor: MainScreenInteractorProtocol {
             name: "Hugo",
             type: .Cat)
         let saved = storage.saveAnimal(animal)
-        presenter.addAnimal(saved)
+        presenter.addAnimal(AnimalDTO(animal: saved))
     }
         
     func getCats() {
         storage.getAnimals { [weak self] animals in
-            self?.presenter.displayAnimals(animals)
+            self?.presenter.displayAnimals(animals.map(AnimalDTO.init))
         }
         
     }
     
-    func deleteCat(animal: Animal, index: IndexPath) {
+    func deleteCat(animal: AnimalDTO, index: IndexPath) {
         storage.removeAnimal(animal)
         presenter.removeAnimal(indexPath: index)
     }

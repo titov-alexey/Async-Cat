@@ -10,7 +10,7 @@ import UIKit
 
 class AnimalCollectionDelegate: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
     
-    var dataSource: [Animal] = []
+    var dataSource: [AnimalDTO] = []
     weak var actionDelegate: MainScreenController?
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

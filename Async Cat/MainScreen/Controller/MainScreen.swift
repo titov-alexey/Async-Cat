@@ -10,8 +10,8 @@ import UIKit
 
 protocol MainScreen: UIViewController {
     var interactor: MainScreenInteractorProtocol { get }
-    func displayAnimals(_ animals: [Animal])
-    func addAnimal(_ animal: Animal)
+    func displayAnimals(_ animals: [AnimalDTO])
+    func addAnimal(_ animal: AnimalDTO)
     func deleteAnimalFromCollection(at indexPath: IndexPath)
   
 }
@@ -45,13 +45,13 @@ class MainScreenController: UIViewController, MainScreen {
         setupCollectionDelegate()
     }
     
-    func displayAnimals(_ animals: [Animal]) {
+    func displayAnimals(_ animals: [AnimalDTO]) {
         collectionDelegate.dataSource = animals
         print("animals count \(animals.count)")
         customView?.updateData(dataSource: collectionDelegate)
     }
     
-    func addAnimal(_ animal: Animal) {
+    func addAnimal(_ animal: AnimalDTO) {
         collectionDelegate.dataSource.insert(animal, at: 0)
         customView?.collection.insertItems(at: [IndexPath(row: 0, section: 0)])
     }
@@ -61,7 +61,7 @@ class MainScreenController: UIViewController, MainScreen {
         customView?.collection.deleteItems(at: [indexPath])
     }
     
-    func removeAnimal(_ animal: Animal, index: IndexPath) {
+    func removeAnimal(_ animal: AnimalDTO, index: IndexPath) {
         interactor.deleteCat(animal: animal, index: index)
     }
 

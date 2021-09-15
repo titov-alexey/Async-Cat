@@ -15,8 +15,8 @@ protocol BasicStorage {
     
     func fetchRequest() -> NSFetchRequest<T>
     
-    func getAllObjects(complition: @escaping ([T]?) -> ())
-    func removeObject(_ object: T)
+    func getAllObjects(completion: @escaping ([T]?) -> ())
+    func removeObject(with id: NSManagedObjectID)
 }
 
 extension BasicStorage {
@@ -28,12 +28,12 @@ extension BasicStorage {
         return request
     }
     
-    func getAllObjects(complition: @escaping ([T]?) -> ()) {
+    func getAllObjects(completion: @escaping ([T]?) -> ()) {
         let fetchRequest: NSFetchRequest<T> = fetchRequest()
         let asyncFetch = NSAsynchronousFetchRequest(fetchRequest: fetchRequest) { asyncResult in
             DispatchQueue.main.async {
                 if let items = asyncResult.finalResult {
-                    complition(items)
+                    completion(items)
                 }
             }
             
@@ -64,9 +64,9 @@ extension BasicStorage {
     }
     
     
-    func removeObject(_ object: T) {
+    func removeObject(with id: NSManagedObjectID) {
         let background = persistentContainer.newBackgroundContext()
-        if let obj = try? background.existingObject(with: object.objectID) {
+        if let obj = try? background.existingObject(with: id) {
             background.delete(obj)
             save(with: background)
         }

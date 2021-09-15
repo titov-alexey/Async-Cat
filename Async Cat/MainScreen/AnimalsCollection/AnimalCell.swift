@@ -44,7 +44,7 @@ class AnimalCell: UICollectionViewCell, ConfigurableCell {
         }
     }
     
-    func configure(with animal: Animal) {
+    func configure(with animal: AnimalDTO) {
         animalImg.image = UIImage(named: "cat.splashscreen")!
         animalName.text = animal.name
     }

@@ -65,7 +65,7 @@ class MainScreenView: UIView {
     }
     
     func updateData(dataSource: AnimalCollectionDelegate) {
-        collection.delegate  = dataSource
+        collection.dataSource = dataSource
         collection.reloadSections([0])
     }
     

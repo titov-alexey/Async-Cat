@@ -10,7 +10,7 @@ import CoreData
 
 protocol AnimalStorageProtocol {
     func getAnimals(_ completion: @escaping ([Animal]) -> ())
-    func removeAnimal(_ animal: Animal)
+    func removeAnimal(_ animal: AnimalDTO)
     func saveAnimal(_ animal: AnimalDTO) -> Animal
 }
 
@@ -26,9 +26,7 @@ final class AnimalsStorage: BasicStorage {
                 fatalError("Не удалось создать контейнер для БД: \(error.localizedDescription)")
             }
         }
-        persistentContainer.viewContext.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy
-//        persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
-//        persistentContainer.viewContext.shouldDeleteInaccessibleFaults = true
+        persistentContainer.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         
         context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
         context.parent = persistentContainer.viewContext
@@ -39,23 +37,23 @@ final class AnimalsStorage: BasicStorage {
 
 extension AnimalsStorage: AnimalStorageProtocol {
     func saveAnimal(_ animal: AnimalDTO) -> Animal {
-        let backGroundContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
-        backGroundContext.automaticallyMergesChangesFromParent = true
+        let backGroundContext = persistentContainer.newBackgroundContext()
         let a = Animal(context: backGroundContext)
         a.name = animal.name
-        a.type = animal.type.rawValue
+        a.type = animal.type!.rawValue
         save(with: backGroundContext)
         return a
     }
     
     func getAnimals(_ completion: @escaping ([Animal]) -> ()) {
-        getAllObjects(complition: { animals in
+        getAllObjects(completion: { animals in
             completion(animals ?? [])
         })
-        
     }
     
-    func removeAnimal(_ animal: Animal) {
-        removeObject(animal)
+    func removeAnimal(_ animal: AnimalDTO) {
+        if let id = animal.storageID {
+            removeObject(with: id)
+        }
     }
 }

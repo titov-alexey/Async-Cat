@@ -9,8 +9,8 @@ import Foundation
 
 protocol MainScreenPresenterProtocol {
     var viewController: MainScreen? { get set }
-    func displayAnimals(_ animals: [Animal])
-    func addAnimal(_ animal: Animal)
+    func displayAnimals(_ animals: [AnimalDTO])
+    func addAnimal(_ animal: AnimalDTO)
     func removeAnimal(indexPath: IndexPath)
 }
 
@@ -18,7 +18,7 @@ class MainScreenPresenter: MainScreenPresenterProtocol {
     
     weak var viewController: MainScreen?
     
-    func displayAnimals(_ animals: [Animal]) {
+    func displayAnimals(_ animals: [AnimalDTO]) {
         viewController?.displayAnimals(animals)
     }
     
@@ -26,7 +26,7 @@ class MainScreenPresenter: MainScreenPresenterProtocol {
         viewController?.deleteAnimalFromCollection(at: indexPath)
     }
     
-    func addAnimal(_ animal: Animal) {
+    func addAnimal(_ animal: AnimalDTO) {
         viewController?.addAnimal(animal)
     }
 }
