@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0A31375E80EC5805491E9704 /* Pods_Async_Cat_Async_CatUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 339D35AB09CF5E084526F414 /* Pods_Async_Cat_Async_CatUITests.framework */; };
 		47E2CF4B08A93C3316528203 /* Pods_Async_Cat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFBF74A0B0DD8030D3F5CDD0 /* Pods_Async_Cat.framework */; };
+		880514C726EF8A59003CA800 /* AnimalDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880514C626EF8A59003CA800 /* AnimalDTO.swift */; };
 		883F209126E63863003461C7 /* AnimalCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883F209026E63863003461C7 /* AnimalCellConfigurator.swift */; };
 		883F209326E64CF8003461C7 /* AnimalsFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883F209226E64CF8003461C7 /* AnimalsFlowLayout.swift */; };
 		888B9C8626ECDDB5007EC441 /* BasicStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888B9C8526ECDDB5007EC441 /* BasicStorage.swift */; };
@@ -62,6 +63,7 @@
 		190CF7CDF772BF48FADF9254 /* Pods-Async Cat-Async CatUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Async Cat-Async CatUITests.release.xcconfig"; path = "Target Support Files/Pods-Async Cat-Async CatUITests/Pods-Async Cat-Async CatUITests.release.xcconfig"; sourceTree = "<group>"; };
 		1F11F7641EA350207A60B921 /* Pods-Async CatTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Async CatTests.debug.xcconfig"; path = "Target Support Files/Pods-Async CatTests/Pods-Async CatTests.debug.xcconfig"; sourceTree = "<group>"; };
 		339D35AB09CF5E084526F414 /* Pods_Async_Cat_Async_CatUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Async_Cat_Async_CatUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		880514C626EF8A59003CA800 /* AnimalDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalDTO.swift; sourceTree = "<group>"; };
 		883F209026E63863003461C7 /* AnimalCellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalCellConfigurator.swift; sourceTree = "<group>"; };
 		883F209226E64CF8003461C7 /* AnimalsFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalsFlowLayout.swift; sourceTree = "<group>"; };
 		888B9C8526ECDDB5007EC441 /* BasicStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicStorage.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				909E16CA26D927550044D8CD /* Animals_datamodel.xcdatamodeld */,
 				88A8EC0A26DE9550007E1A40 /* Animal+CoreDataProperties.swift */,
 				88A8EC0926DE9550007E1A40 /* Animal+CoreDataClass.swift */,
+				880514C626EF8A59003CA800 /* AnimalDTO.swift */,
 			);
 			path = Animals;
 			sourceTree = "<group>";
@@ -601,6 +604,7 @@
 				900C5A9A26CC313900477A99 /* AppDelegate.swift in Sources */,
 				901791A726D133EE0081FEA3 /* DIResolver.swift in Sources */,
 				900C5ACC26CC354300477A99 /* Coordinator.swift in Sources */,
+				880514C726EF8A59003CA800 /* AnimalDTO.swift in Sources */,
 				88A8EC0C26DE9550007E1A40 /* Animal+CoreDataProperties.swift in Sources */,
 				88A8EC0B26DE9550007E1A40 /* Animal+CoreDataClass.swift in Sources */,
 				88F984D026DF78E9007979F6 /* AnimalsCollectionDelegate.swift in Sources */,

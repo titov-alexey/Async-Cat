@@ -11,6 +11,8 @@ import UIKit
 protocol MainScreen: UIViewController {
     var interactor: MainScreenInteractorProtocol { get }
     func displayAnimals(_ animals: [Animal])
+    func addAnimal(_ animal: Animal)
+    func deleteAnimalFromCollection(at indexPath: IndexPath)
   
 }
 
@@ -40,21 +42,51 @@ class MainScreenController: UIViewController, MainScreen {
     override func viewDidLoad() {
         super.viewDidLoad()
         setButtonsActions()
+        setupCollectionDelegate()
     }
-    
-    
-    
-
     
     func displayAnimals(_ animals: [Animal]) {
         collectionDelegate.dataSource = animals
-        collectionDelegate.actionDelegate = self
+        print("animals count \(animals.count)")
         customView?.updateData(dataSource: collectionDelegate)
     }
     
-    func removeAnimal(_ animal: Animal) {
-        interactor.deleteCat(animal: animal)
+    func addAnimal(_ animal: Animal) {
+        collectionDelegate.dataSource.insert(animal, at: 0)
+        customView?.collection.insertItems(at: [IndexPath(row: 0, section: 0)])
     }
+    
+    func deleteAnimalFromCollection(at indexPath: IndexPath) {
+        collectionDelegate.dataSource.remove(at: indexPath.row)
+        customView?.collection.deleteItems(at: [indexPath])
+    }
+    
+    func removeAnimal(_ animal: Animal, index: IndexPath) {
+        interactor.deleteCat(animal: animal, index: index)
+    }
+
+    
+    private func setupCollectionDelegate() {
+        collectionDelegate.actionDelegate = self
+        customView?.setupDelegate(dataDelegate: collectionDelegate)
+        
+    }
+    
+    private func setButtonsActions() {
+        customView?.saveButton.addTarget(self, action: #selector(addData), for: .touchUpInside)
+        customView?.getAllButton.addTarget(self, action: #selector(getCats), for: .touchUpInside)
+    }
+    
+    @objc func addData() {
+        interactor.addCat()
+    }
+    
+    @objc func getCats() {
+        print("Нажал получить кота")
+        interactor.getCats()
+
+    }
+    
     
 //    func showCatWords(_ word: String) {
 //        let cell = SaysCell(text: word)
@@ -72,18 +104,4 @@ class MainScreenController: UIViewController, MainScreen {
 //        }
 //
 //    }
-    
-    private func setButtonsActions() {
-        customView?.saveButton.addTarget(self, action: #selector(addData), for: .touchUpInside)
-        customView?.getAllButton.addTarget(self, action: #selector(getCats), for: .touchUpInside)
-    }
-    
-    @objc func addData() {
-        interactor.addCat()
-    }
-    
-    @objc func getCats() {
-        interactor.getCats()
-
-    }
 }

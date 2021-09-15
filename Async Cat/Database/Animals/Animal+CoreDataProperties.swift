@@ -12,10 +12,6 @@ import CoreData
 
 extension Animal {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Animal> {
-        return NSFetchRequest<Animal>(entityName: "Animal")
-    }
-
     @NSManaged public var dateCreated: Date?
     @NSManaged public var name: String?
     @NSManaged public var type: String?

@@ -8,8 +8,14 @@
 import Foundation
 import CoreData
 
-final class AnimalsStorage: BasicStorage {
+protocol AnimalStorageProtocol {
+    func getAnimals(_ completion: @escaping ([Animal]) -> ())
+    func removeAnimal(_ animal: Animal)
+    func saveAnimal(_ animal: AnimalDTO) -> Animal
+}
 
+final class AnimalsStorage: BasicStorage {
+    typealias T = Animal
     var persistentContainer: NSPersistentContainer
     var context: NSManagedObjectContext
     
@@ -20,53 +26,36 @@ final class AnimalsStorage: BasicStorage {
                 fatalError("Не удалось создать контейнер для БД: \(error.localizedDescription)")
             }
         }
-        persistentContainer.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-        persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
+        persistentContainer.viewContext.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy
+//        persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
+//        persistentContainer.viewContext.shouldDeleteInaccessibleFaults = true
         
-        context = persistentContainer.viewContext
+        context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+        context.parent = persistentContainer.viewContext
+        context.automaticallyMergesChangesFromParent = true
     }
     
-    
-    func getAllObjects() -> [Animal]? {
-        let fetchRequest: NSFetchRequest<Animal> = Animal.fetchRequest()
-        let objects = try? context.fetch(fetchRequest)
-        return objects
+}
+
+extension AnimalsStorage: AnimalStorageProtocol {
+    func saveAnimal(_ animal: AnimalDTO) -> Animal {
+        let backGroundContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+        backGroundContext.automaticallyMergesChangesFromParent = true
+        let a = Animal(context: backGroundContext)
+        a.name = animal.name
+        a.type = animal.type.rawValue
+        save(with: backGroundContext)
+        return a
     }
     
-    func saveInBackground() {
-        let context = persistentContainer.newBackgroundContext()
-        context.perform { [weak self] in
-            if self?.context.hasChanges != nil {
-                do {
-                    try self?.context.save()
-                } catch {
-                    self?.context.rollback()
-                    let nserror = error as NSError
-                    fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-                }
-            }
-        }
+    func getAnimals(_ completion: @escaping ([Animal]) -> ()) {
+        getAllObjects(complition: { animals in
+            completion(animals ?? [])
+        })
+        
     }
     
-    func saveContext() {
-        context.performAndWait {
-            if context.hasChanges {
-                do {
-                    try context.save()
-                } catch {
-                    context.rollback()
-                    let nserror = error as NSError
-                    fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-                }
-            }
-        }
+    func removeAnimal(_ animal: Animal) {
+        removeObject(animal)
     }
-    
-    func removeObject(_ object: Animal) {
-        let context = persistentContainer.newBackgroundContext()
-        context.perform { [weak self] in
-            context.delete(object)
-        }
-    }
-    
 }

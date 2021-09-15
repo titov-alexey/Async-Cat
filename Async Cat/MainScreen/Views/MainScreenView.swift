@@ -65,10 +65,16 @@ class MainScreenView: UIView {
     }
     
     func updateData(dataSource: AnimalCollectionDelegate) {
-        collection.dataSource = dataSource
         collection.delegate  = dataSource
-        collection.reloadData()
+        collection.reloadSections([0])
     }
+    
+    func setupDelegate(dataDelegate: AnimalCollectionDelegate) {
+        collection.delegate = dataDelegate
+        collection.dataSource = dataDelegate
+    }
+
+    
     func setupCollection() {
         collection.translatesAutoresizingMaskIntoConstraints = false
         collection.register(AnimalCell.self)

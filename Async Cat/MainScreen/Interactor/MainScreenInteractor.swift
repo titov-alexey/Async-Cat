@@ -14,7 +14,7 @@ protocol MainScreenInteractorProtocol {
     func addCat()
     func getCats()
     func stopListenCat()
-    func deleteCat(animal: Animal)
+    func deleteCat(animal: Animal, index: IndexPath)
 }
 
 class MainScreenInteractor: MainScreenInteractorProtocol {
@@ -22,12 +22,12 @@ class MainScreenInteractor: MainScreenInteractorProtocol {
     
     var network: NetworkService
     
-    let storage: AnimalsStorage
+    let storage: AnimalStorageProtocol
     let presenter: MainScreenPresenterProtocol
     
     init(network: NetworkService,
          presenter: MainScreenPresenterProtocol,
-         storage: AnimalsStorage) {
+         storage: AnimalStorageProtocol) {
         self.network = network
         self.presenter = presenter
         self.storage = storage
@@ -47,28 +47,23 @@ class MainScreenInteractor: MainScreenInteractorProtocol {
     }
     
     func addCat() {
-        let animal = Animal(context: storage.context)
-        animal.name = "Hinata"
-        animal.type = "Cat"
-        
-        storage.saveInBackground()
-    }
-    
-    private func getAllCats() -> [Animal] {
-        if let objects = storage.getAllObjects() {
-            return objects
-        }
-        return []
+        let animal = AnimalDTO(
+            name: "Hugo",
+            type: .Cat)
+        let saved = storage.saveAnimal(animal)
+        presenter.addAnimal(saved)
     }
         
     func getCats() {
-        presenter.displayAnimals(getAllCats())
+        storage.getAnimals { [weak self] animals in
+            self?.presenter.displayAnimals(animals)
+        }
+        
     }
     
-    func deleteCat(animal: Animal) {
-        storage.context.delete(animal)
-        storage.saveContext()
-        presenter.displayAnimals(getAllCats())
+    func deleteCat(animal: Animal, index: IndexPath) {
+        storage.removeAnimal(animal)
+        presenter.removeAnimal(indexPath: index)
     }
     
 }

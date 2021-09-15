@@ -12,6 +12,9 @@ import CoreData
 @objc(Animal)
 public class Animal: NSManagedObject {
 
+    deinit {
+        print("animal deinit")
+    }
     
     public override func awakeFromInsert() {
         super.awakeFromInsert()

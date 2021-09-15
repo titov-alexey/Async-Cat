@@ -10,7 +10,7 @@ import UIKit
 
 class AnimalCollectionDelegate: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
     
-    var dataSource = [Animal]()
+    var dataSource: [Animal] = []
     weak var actionDelegate: MainScreenController?
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -25,8 +25,6 @@ class AnimalCollectionDelegate: NSObject, UICollectionViewDataSource, UICollecti
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let animal = dataSource[indexPath.row]
-//        dataSource.remove(at: indexPath.row)
-//        collectionView.deleteItems(at: [indexPath])
-        actionDelegate?.removeAnimal(animal)
+        actionDelegate?.removeAnimal(animal, index: indexPath)
     }
 }
