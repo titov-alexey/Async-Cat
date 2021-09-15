@@ -77,8 +77,9 @@ class MainScreenView: UIView {
     
     func setupCollection() {
         collection.translatesAutoresizingMaskIntoConstraints = false
+        collection.backgroundColor = .clear
         collection.register(AnimalCell.self)
-        collection.backgroundColor = .darkGray
+        collection.register(AddAnimalCell.self)
         
         
         addSubview(collection)

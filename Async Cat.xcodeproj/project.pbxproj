@@ -17,6 +17,7 @@
 		88A2C3FA26EBBB410057B8B1 /* MainScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A2C3F926EBBB410057B8B1 /* MainScreenPresenter.swift */; };
 		88A8EC0B26DE9550007E1A40 /* Animal+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8EC0926DE9550007E1A40 /* Animal+CoreDataClass.swift */; };
 		88A8EC0C26DE9550007E1A40 /* Animal+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8EC0A26DE9550007E1A40 /* Animal+CoreDataProperties.swift */; };
+		88AD0D5526F224CC003AB33F /* AddAnimalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AD0D5426F224CC003AB33F /* AddAnimalCell.swift */; };
 		88F984D026DF78E9007979F6 /* AnimalsCollectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F984CF26DF78E9007979F6 /* AnimalsCollectionDelegate.swift */; };
 		900C5A9A26CC313900477A99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900C5A9926CC313900477A99 /* AppDelegate.swift */; };
 		900C5A9C26CC313900477A99 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900C5A9B26CC313900477A99 /* SceneDelegate.swift */; };
@@ -71,6 +72,7 @@
 		88A2C3F926EBBB410057B8B1 /* MainScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenPresenter.swift; sourceTree = "<group>"; };
 		88A8EC0926DE9550007E1A40 /* Animal+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Animal+CoreDataClass.swift"; path = "Async Cat/Database/Animals/Animal+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		88A8EC0A26DE9550007E1A40 /* Animal+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Animal+CoreDataProperties.swift"; path = "Async Cat/Database/Animals/Animal+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		88AD0D5426F224CC003AB33F /* AddAnimalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAnimalCell.swift; sourceTree = "<group>"; };
 		88F984CF26DF78E9007979F6 /* AnimalsCollectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalsCollectionDelegate.swift; sourceTree = "<group>"; };
 		900C5A9626CC313900477A99 /* Async Cat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Async Cat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		900C5A9926CC313900477A99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -334,6 +336,7 @@
 				88F984CF26DF78E9007979F6 /* AnimalsCollectionDelegate.swift */,
 				883F209026E63863003461C7 /* AnimalCellConfigurator.swift */,
 				883F209226E64CF8003461C7 /* AnimalsFlowLayout.swift */,
+				88AD0D5426F224CC003AB33F /* AddAnimalCell.swift */,
 			);
 			path = AnimalsCollection;
 			sourceTree = "<group>";
@@ -598,6 +601,7 @@
 				888B9C8626ECDDB5007EC441 /* BasicStorage.swift in Sources */,
 				901791B526D17C140081FEA3 /* SaysCell.swift in Sources */,
 				901791AA26D1398D0081FEA3 /* MainScreen.swift in Sources */,
+				88AD0D5526F224CC003AB33F /* AddAnimalCell.swift in Sources */,
 				909E16DC26DABC4D0044D8CD /* UICollectionView+Extensions.swift in Sources */,
 				883F209326E64CF8003461C7 /* AnimalsFlowLayout.swift in Sources */,
 				909E16D626DA72980044D8CD /* AnimalsStorage.swift in Sources */,

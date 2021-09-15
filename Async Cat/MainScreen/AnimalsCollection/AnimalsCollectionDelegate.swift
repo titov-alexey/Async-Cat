@@ -14,17 +14,30 @@ class AnimalCollectionDelegate: NSObject, UICollectionViewDataSource, UICollecti
     weak var actionDelegate: MainScreenController?
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        dataSource.count
+        dataSource.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(cell: AnimalCell.self, for: indexPath)
-        cell.configure(with: dataSource[indexPath.row])
-        return cell
+        if indexPath.row == dataSource.count {
+            let cell = collectionView.dequeueReusableCell(cell: AddAnimalCell.self, for: indexPath)
+            cell.configure(with: nil)
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(cell: AnimalCell.self, for: indexPath)
+            cell.configure(with: dataSource[indexPath.row])
+            return cell
+        }
     }
     
+    
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let animal = dataSource[indexPath.row]
-        actionDelegate?.removeAnimal(animal, index: indexPath)
+        if indexPath.row == dataSource.count {
+            actionDelegate?.addData()
+        } else {
+            let animal = dataSource[indexPath.row]
+            actionDelegate?.removeAnimal(animal, index: indexPath)
+        }
+        
     }
 }
